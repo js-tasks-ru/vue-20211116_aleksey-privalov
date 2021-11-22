@@ -3,13 +3,7 @@ import { createApp, defineComponent } from './vendor/vue.esm-browser.js';
  // Создайте Vue приложение
 const RootComponent = defineComponent({
 	name: 'Root',
-	vue: {
-		config: {
-			productionTip: false,
-			devtools: true,
-		}
-	},
-		data(){
+	data(){
 		return {
 			counter: 0,
 		};
