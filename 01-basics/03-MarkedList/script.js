@@ -34,7 +34,6 @@ const RootComponent = defineComponent({
         'Jeffery@juwan.us',
         'Isaias_Kuhic@jarrett.net',
       ],
-      Email: 'G',
       pos: 0,
 		};
 	},
