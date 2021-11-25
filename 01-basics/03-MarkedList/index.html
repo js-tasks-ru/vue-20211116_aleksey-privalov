@@ -17,7 +17,7 @@
           <input type="search" v-model="filter" />
         </div>
         <ul>
-          <li v-for="Email in emails"  :class="{ marked: marked(Email) }">{{ Email }}</li>
+          <li v-for="(Email, idx) in emails"  :class="{ marked: isMarked[idx] }">{{ Email }}</li>
         </ul>
       </div>
     </div>

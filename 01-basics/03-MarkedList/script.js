@@ -34,14 +34,19 @@ const RootComponent = defineComponent({
         'Jeffery@juwan.us',
         'Isaias_Kuhic@jarrett.net',
       ],
-      pos: 0,
 		};
 	},
   methods: {
     marked(Email) {
-      return this.filter && Email.toLowerCase().includes(this.filter.toLowerCase(), this.pos);
+      let pos;
+      return this.filter && Email.toLowerCase().includes(this.filter.toLowerCase(), pos);
     },
   },
+  computed: {
+    isMarked() {
+      return this.emails.map(this.marked);
+    }
+  }
 });
 
 const app = createApp(RootComponent);
