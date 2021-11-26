@@ -13,7 +13,7 @@ const RootComponent = {
     computed: {
         calc_result() {
             if (this.calc_mode === 'sum') {
-                return parseInt(this.number1, 10) + parseInt(this.number2, 10);
+                return this.number1 + this.number2;
             }
             else if (this.calc_mode === 'subtract') {
                 return this.number1 - this.number2;
