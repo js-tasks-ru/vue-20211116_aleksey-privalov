@@ -21,7 +21,6 @@ const RootComponent = defineComponent({
 		return {
       meetupId: '0',
       meetupObject: null,
-      meetupTitle: '',
 		};
 	},
   watch: {
@@ -31,8 +30,6 @@ const RootComponent = defineComponent({
   },
   computed: {
     meetupTitle(){
-      //console.log(this.meetupObject);
-      //return this.meetupObject.title;
       return this.meetupObject == null ? 'No title' : this.meetupObject.title;
     },
   },
