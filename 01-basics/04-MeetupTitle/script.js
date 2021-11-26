@@ -28,11 +28,12 @@ const RootComponent = defineComponent({
     async 'meetupId'() {
       this.meetupObject = await fetchMeetupById(this.meetupId);
     },
-    meetupObject: {
-      deep: true,
-      handler() {
-        this.meetupTitle = this.meetupObject == null ? 'No title' : this.meetupObject.title;
-      },
+  },
+  computed: {
+    meetupTitle(){
+      //console.log(this.meetupObject);
+      //return this.meetupObject.title;
+      return this.meetupObject == null ? 'No title' : this.meetupObject.title;
     },
   },
 });
