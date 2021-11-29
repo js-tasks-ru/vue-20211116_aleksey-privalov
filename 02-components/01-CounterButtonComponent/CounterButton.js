@@ -13,8 +13,8 @@ export default defineComponent({
 
   methods: {
     update(value) {
-      console.log(value);
-      this.$emit('update', value+1);
+      //console.log(value);
+      this.$emit('update:count', value+1);
     },
   },
 
