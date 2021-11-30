@@ -12,13 +12,13 @@ export default defineComponent({
       requred: false,
     },
   },
-  methods: {
-    getStyle(image){
-      return image == null ? '' : '--bg-url: url("'+image+'")';
-    },
+  computed: {
+    getStyle(){
+      return this.image == null ? '' : '--bg-url: url("'+this.image+'")';
+    }
   },
   template: `
-    <div class="meetup-cover" :style="getStyle(image)">
-        <h1 class="meetup-cover__title" v-text="title"></h1>
+    <div class="meetup-cover" :style="getStyle">
+        <h1 class="meetup-cover__title">{{ title }}</h1>
     </div>`,
 });
