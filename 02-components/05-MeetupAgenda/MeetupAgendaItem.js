@@ -10,27 +10,27 @@ export default defineComponent({
     },
   },
   computed: {
-    'getAgendaItemTitle'(){
+    agendaItemTitle(){
       return this.agendaItem.title == null ? agendaItemDefaultTitles[this.agendaItem.type] : this.agendaItem.title;
     },
-    'getAgendaItemIcon'(){
+    agendaItemIcon(){
       return '/assets/icons/icon-'+(agendaItemIcons[this.agendaItem.type] == undefined ? 'key' : agendaItemIcons[this.agendaItem.type])+'.svg';
     },
   },
   template: `
     <div class="agenda-item">
       <div class="agenda-item__col">
-        <img :src="getAgendaItemIcon" class="icon" alt="key" />
+        <img :src="agendaItemIcon" class="icon" alt="key" />
       </div>
       <div class="agenda-item__col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
       <div class="agenda-item__col">
-        <h3 class="agenda-item__title">{{ getAgendaItemTitle }}</h3>
+        <h3 class="agenda-item__title">{{ agendaItemTitle }}</h3>
         <p class="agenda-item__talk" v-show="agendaItem.speaker != null">
           <span>{{ agendaItem.speaker }}</span>
           <span class="agenda-item__dot"></span>
           <span class="agenda-item__lang">{{ agendaItem.language }}</span>
         </p>
-        <p v-show="agendaItem.description != null">{{ agendaItem.description }}</p>
+        <p v-if="agendaItem.description != null">{{ agendaItem.description }}</p>
       </div>
     </div>`,
 });
