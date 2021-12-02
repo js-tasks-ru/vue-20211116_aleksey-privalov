@@ -25,6 +25,12 @@ export default defineComponent({
     },
   },
 
+  computed: {
+    agendaIsEmpty(){
+      return this.meetup.agenda === undefined || this.meetup.agenda.length === 0;
+    },
+  },
+
   template: `
     <div>
     <meetup-cover :title="meetup.title" :image="meetup.image"></meetup-cover>
@@ -36,8 +42,8 @@ export default defineComponent({
             <meetup-description :description="meetup.description"></meetup-description>
 
             <h3>Программа</h3>
-            <meetup-agenda v-if="meetup.agenda.length>0" :agenda="meetup.agenda"></meetup-agenda>
-            <ui-alert v-else>Программа пока пуста...</ui-alert>
+            <ui-alert v-if="agendaIsEmpty">Программа пока пуста...</ui-alert>
+            <meetup-agenda v-else :agenda="meetup.agenda"></meetup-agenda>
           </div>
           <div class="meetup__aside">
             <meetup-info
