@@ -15,8 +15,8 @@ export default defineComponent({
 
 	data(){
 		return {
-      meetupObject: null,
-      meetupState: 'loading',
+			meetupObject: null,
+			meetupState: 'loading',
 		};
 	},
 
