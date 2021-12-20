@@ -1,24 +1,53 @@
 <template>
   <div class="toasts">
-    <div class="toast toast_success">
-      <ui-icon class="toast__icon" icon="check-circle" />
-      <span>Success Toast Example</span>
-    </div>
-
-    <div class="toast toast_error">
-      <ui-icon class="toast__icon" icon="alert-circle" />
-      <span>Error Toast Example</span>
+    <div v-for="[mess, toast] in toasts" class="toast" :class="toast.class">
+      <ui-icon class="toast__icon" :icon="toast.icon" />
+      <span>{{ mess }}</span>
     </div>
   </div>
 </template>
 
 <script>
 import UiIcon from './UiIcon';
+import { toasterClasses, toasterIcons } from './ToasterTypeData';
 
 export default {
   name: 'TheToaster',
 
   components: { UiIcon },
+
+  methods: {
+    success(message){
+      this.showToast('success', message);
+      this.setHidingToast(message, 5000);
+    },
+
+    error(message){
+      this.showToast('error', message);
+      this.setHidingToast(message, 5000);
+    },
+
+    showToast(toastType, message){
+      this.toasts.set(message, {
+        class: toasterClasses.[toastType],
+        icon: toasterIcons.[toastType],
+      });
+    },
+
+    setHidingToast(message, delay){
+      setTimeout((mess) => {this.hideToast(mess)}, delay, message);
+    },
+
+    hideToast(mess){
+      this.toasts.delete(mess);
+    },
+  },
+
+  data() {
+    return {
+      toasts: new Map(),
+    };
+  },
 };
 </script>
 
