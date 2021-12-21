@@ -3,19 +3,15 @@
   "version": "4.0.0",
   "private": true,
   "description": "Taskbook for Vue 3 Course on learn.javascript.ru ",
-  "author": {
-    "name": "Grigorii K. Shartsev",
-    "email": "g.shartsev@javascript.info"
-  },
+  "author": "Grigorii K. Shartsev <g.shartsev@javascript.info>",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue .",
     "file-serve": "serve",
-    "format": "prettier --write .",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix .",
+    "serve": "vue-cli-service serve",
     "test": "jest",
-    "test:solution": "cross-env SOLUTION=1 npm test"
+    "test:solution": "cross-env SOLUTION=1 npm test",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue .",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@tweenjs/tween.js": "^18.6.4",
@@ -55,12 +51,9 @@
     "ts-jest": "^26.5.6",
     "typescript": "^4.3.5"
   },
+  "license": "UNLICENSED",
   "browserslist": [
     "last 2 versions",
-    "not dead",
-    "> 1%"
-  ],
-  "_id": "tasks-vue-3@4.0.0",
-  "license": "UNLICENSED",
-  "readme": "ERROR: No README data found!"
+    "not dead"
+  ]
 }
