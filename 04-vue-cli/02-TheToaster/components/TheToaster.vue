@@ -1,8 +1,8 @@
 <template>
   <div class="toasts">
-    <div v-for="[mess, toast] in toasts" class="toast" :class="toast.class">
+    <div v-for="toast in toasts" class="toast" :class="toast.class">
       <ui-icon class="toast__icon" :icon="toast.icon" />
-      <span>{{ mess }}</span>
+      <span>{{ toast.message }}</span>
     </div>
   </div>
 </template>
@@ -18,34 +18,38 @@ export default {
 
   methods: {
     success(message){
-      this.showToast('success', message);
-      this.setHidingToast(message, 5000);
+      var toast = this.showToast('success', message);
+      this.setHidingToast(toast, 5000);
     },
 
     error(message){
-      this.showToast('error', message);
-      this.setHidingToast(message, 5000);
+      var toast = this.showToast('error', message);
+      this.setHidingToast(toast, 5000);
     },
 
     showToast(toastType, message){
-      this.toasts.set(message, {
+      var toast = {
+        message: message,
         class: toasterClasses.[toastType],
         icon: toasterIcons.[toastType],
-      });
+      };
+      this.toasts.add(toast);
+      return toast;
     },
 
-    setHidingToast(message, delay){
-      setTimeout((mess) => {this.hideToast(mess)}, delay, message);
+    setHidingToast(toast, delay){
+      setTimeout((toast) => {this.hideToast(toast)}, delay, toast);
     },
 
-    hideToast(mess){
-      this.toasts.delete(mess);
+    hideToast(toast){
+      console.log(toast);
+      this.toasts.delete(toast);
     },
   },
 
   data() {
     return {
-      toasts: new Map(),
+      toasts: new Set(),
     };
   },
 };
