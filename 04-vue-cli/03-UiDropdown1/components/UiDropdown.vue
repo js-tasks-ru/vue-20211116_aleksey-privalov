@@ -7,7 +7,7 @@
 
     <div class="dropdown__menu" role="listbox" v-show="opened">
       <button class="dropdown__item" :class="{'dropdown__item_icon': withIcon}" role="option" type="button" v-for="opt in options" @click="dropdown__itemOnClick(opt)">
-        <ui-icon :icon="opt.icon" class="dropdown__icon" v-if="withIcon" />
+        <ui-icon :icon="opt.icon" class="dropdown__icon" v-if="opt.icon" />
         {{ opt.text }}
       </button>
     </div>
@@ -16,10 +16,6 @@
 
 <script>
 import UiIcon from './UiIcon';
-
-function findSelectedOption(opt){
-  return opt.value === this;
-};
 
 export default {
   name: 'UiDropdown',
@@ -48,7 +44,7 @@ export default {
 
   computed: {
     selected(){
-      return this.options.find(findSelectedOption, this.modelValue);
+      return this.options.find(opt => opt.value === this.modelValue);
     },
     withIcon(){
       for(var i in this.options){

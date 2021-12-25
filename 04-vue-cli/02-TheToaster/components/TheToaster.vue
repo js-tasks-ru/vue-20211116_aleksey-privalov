@@ -1,7 +1,7 @@
 <template>
   <div class="toasts">
     <div v-for="toast in toasts" class="toast" :class="toast.class">
-      <ui-icon class="toast__icon" :icon="toast.icon" />
+      <ui-icon class="toast__icon" :icon="toast.icon" v-if="toast.icon" />
       <span>{{ toast.message }}</span>
     </div>
   </div>
@@ -42,7 +42,6 @@ export default {
     },
 
     hideToast(toast){
-      console.log(toast);
       this.toasts.delete(toast);
     },
   },
