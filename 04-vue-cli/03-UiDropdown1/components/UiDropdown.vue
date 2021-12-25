@@ -1,12 +1,12 @@
 <template>
   <div class="dropdown" :class="{'dropdown_opened': opened}">
-    <button type="button" class="dropdown__toggle" :class="{'dropdown__toggle_icon': withIcon}" @click="dropdownOnClick">
+    <button type="button" class="dropdown__toggle" :class="{'dropdown__toggle_icon': withIcon}" @click="opened = !opened">
       <ui-icon :icon="selected.icon" class="dropdown__icon" v-if="selected && withIcon" />
       <span>{{ selected ? selected.text : title }}</span>
     </button>
 
     <div class="dropdown__menu" role="listbox" v-show="opened">
-      <button class="dropdown__item" :class="{'dropdown__item_icon': withIcon}" role="option" type="button" v-for="opt in options" @click="dropdown_menuOnClick(opt)">
+      <button class="dropdown__item" :class="{'dropdown__item_icon': withIcon}" role="option" type="button" v-for="opt in options" @click="dropdown__itemOnClick(opt)">
         <ui-icon :icon="opt.icon" class="dropdown__icon" v-if="withIcon" />
         {{ opt.text }}
       </button>
@@ -16,6 +16,10 @@
 
 <script>
 import UiIcon from './UiIcon';
+
+function findSelectedOption(opt){
+  return opt.value === this;
+};
 
 export default {
   name: 'UiDropdown',
@@ -39,21 +43,13 @@ export default {
   data(){
     return {
       opened: false,
-      selected: undefined,
     };
   },
 
-  watch: {
-    modelValue(){
-      for(var i in this.options){
-        if (this.options[i].value === this.modelValue){
-          this.selected = this.options[i];
-        };
-      };
-    },
-  },
-
   computed: {
+    selected(){
+      return this.options.find(findSelectedOption, this.modelValue);
+    },
     withIcon(){
       for(var i in this.options){
         if (this.options[i].icon){
@@ -65,18 +61,9 @@ export default {
   },
 
   methods: {
-    dropdownOnClick(){
-      if (this.opened){
-        this.opened = false;
-      }
-      else{
-        this.opened = true;
-      };
-    },
-    dropdown_menuOnClick(opt){
-      this.selected = opt;
-      this.$emit('update:modelValue', this.selected.value);
+    dropdown__itemOnClick(opt){
       this.opened = false;
+      this.$emit('update:modelValue', opt.value);
     },
   },
 };
