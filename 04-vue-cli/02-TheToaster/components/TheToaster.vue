@@ -30,8 +30,8 @@ export default {
     showToast(toastType, message){
       var toast = {
         message: message,
-        class: toasterClasses.[toastType],
-        icon: toasterIcons.[toastType],
+        class: toasterClasses[toastType],
+        icon: toasterIcons[toastType],
       };
       this.toasts.add(toast);
       return toast;
